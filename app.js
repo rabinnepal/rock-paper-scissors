@@ -1,28 +1,43 @@
-const myArray=["rock","paper","scissors"]
-
-function computerPlay(){
-    return Math.floor(Math.random() * myArray.length);
+function userPlay() {
+    let random = ["rock", "paper", "scissors"];
+return random[Math.floor(Math.random() * random.length)];
 }
-// console.log(computerPlay())
+function computerPlay() { //computer generates a random answer.
+let random = ["rock", "paper", "scissors"];
+return random[Math.floor(Math.random() * random.length)];
 
-//function that plays a single game of Rock Paper Scissors
-function playRound(playerSelection,computerSelection){
-    // console.log()
-    computerSelection = computerPlay().toString().toLowerCase();
-    playerSelection = playerSelection.toLowerCase();
-    if(computerSelection == playerSelection){
-        displayResults("The game is tied")
+}
+function playRound(playerSelection, computerSelection) { //plays a round of the game.
+if (playerSelection === "rock") {
+    if (computerSelection === "rock") {
+        return "Draw!";
+    } else if (computerSelection === "paper") {
+        return "Computer wins!";
+    } else {
+        return "User wins!";
     }
-    else if(computerSelection == "paper" && playerSelection == "rock"){
-        displayResults("You Lose! Paper beats Rock")
+} else if (playerSelection === "paper") {
+    if (computerSelection === "rock") {
+        return "User wins!";
+    } else if (computerSelection === "paper") {
+        return "Draw!";
+    } else {
+        return "Computer wins!";
     }
-    else if(computerSelection =="rock" && playerSelection == "scissors"){
-        displayResults("You Lose! Rock beat Scissors")
-    }
-    else if (computerSelection =="scissors" && playerSelection == "paper"){
-        displayResults("You Lose! Scissors beat Paper")
+} else {
+    if (computerSelection === "rock") {
+        return "Computer wins!";
+    } else if (computerSelection === "paper") {
+        return "User wins!";
+    } else {
+        return "Draw!";
     }
 }
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+}
+
+var userChoice = userPlay();
+var computerSelection = computerPlay();
+var result = playRound(userChoice, computerSelection)
+console.log("user's choice", userChoice);
+console.log("computer's choice", computerSelection);
+console.log("Result is", result);
