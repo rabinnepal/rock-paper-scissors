@@ -1,43 +1,88 @@
-function userPlay() {
-    let random = ["rock", "paper", "scissors"];
-return random[Math.floor(Math.random() * random.length)];
-}
+
+let options = ["rock", "paper", "scissors"];
+
+
 function computerPlay() { //computer generates a random answer.
-let random = ["rock", "paper", "scissors"];
-return random[Math.floor(Math.random() * random.length)];
-
+    return options[Math.floor(Math.random() * options.length)];
 }
+
+let playerWins, computerWins; 
+
 function playRound(playerSelection, computerSelection) { //plays a round of the game.
-if (playerSelection === "rock") {
-    if (computerSelection === "rock") {
-        return "Draw!";
-    } else if (computerSelection === "paper") {
-        return "Computer wins!";
-    } else {
-        return "User wins!";
+    
+    if (options.indexOf(playerSelection) == -1) {
+        playerWins = false;
+        computerWins = false;
+        return "Invalid input! You have to pick Rock, Paper or Scissors!";
     }
-} else if (playerSelection === "paper") {
-    if (computerSelection === "rock") {
-        return "User wins!";
-    } else if (computerSelection === "paper") {
-        return "Draw!";
-    } else {
-        return "Computer wins!";
+
+    console.log("You picked: " + playerSelection + "\n", "The computer picked: " + computerSelection);
+    
+    if (playerSelection == "rock" && computerSelection == "scissors") {
+
+        playerWins = true;
+        computerWins = false;
+        return "You win! Rock beats Scissors";
+
+    } else if (playerSelection == "scissors" && computerSelection == "rock") {
+
+        playerWins = false;
+        computerWins = true;
+        return "You lose! Rock beats Scissors";
+
+    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+
+        playerWins = true;
+        computerWins = false;
+        return "You win! Scissors beats Paper";
+
+    } else if (playerSelection == "paper" && computerSelection == "scissors") {
+
+        playerWins = false;
+        computerWins = true;
+        return "You lose! Scissors beats Paper";
+
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+
+        playerWins = true;
+        computerWins = false;
+        return "You win! Paper beats Rock";
+
+    } else if (playerSelection == "rock" && computerSelection == "paper") {
+
+        playerWins = false;
+        computerWins = true;
+        return "You lose! Paper beats Rock";
+
+    } else { // i.e. playerSelection === computerSelection
+
+        playerWins = false;
+        computerWins = false;
+        return "Draw! You both picked " + playerSelection[0].toUpperCase() + playerSelection.slice(1); //only doing this for styling (want it to be consistently capitalised)
+
     }
-} else {
-    if (computerSelection === "rock") {
-        return "Computer wins!";
-    } else if (computerSelection === "paper") {
-        return "User wins!";
-    } else {
-        return "Draw!";
-    }
-}
 }
 
-var userChoice = userPlay();
-var computerSelection = computerPlay();
-var result = playRound(userChoice, computerSelection)
-console.log("user's choice", userChoice);
-console.log("computer's choice", computerSelection);
-console.log("Result is", result);
+let handsWon = 0, computerHandsWon = 0;
+
+function game(){
+    for ( i=0; i<5; i++){
+        console.log(playRound(prompt("Choose between Rock, Paper or Scissors!!!").toLowerCase(),computerPlay()));
+        if (playerWins){
+            handsWon++;
+        }
+        else if (computerWins){
+            computerHandsWon++;
+        }
+        //if they're both false it's a draw, neither gets a point 
+
+    }
+    console.log(`You won ${handsWon} times whereas computer won ${computerHandsWon} times!! `);
+    if (handsWon > computerHandsWon) {
+        console.log("You win overall!");
+    } else {
+        console.log("You lose overall! Better luck next time!");
+    }
+}
+
+game();
