@@ -66,17 +66,17 @@ function playRound(playerSelection, computerSelection) { //plays a round of the 
 let handsWon = 0, computerHandsWon = 0;
 
 function game(){
-    for ( i=0; i<5; i++){
-        console.log(playRound(prompt("Choose between Rock, Paper or Scissors!!!").toLowerCase(),computerPlay()));
-        if (playerWins){
-            handsWon++;
-        }
-        else if (computerWins){
-            computerHandsWon++;
-        }
-        //if they're both false it's a draw, neither gets a point 
+    // for ( i=0; i<5; i++){
+    //     console.log(playRound(prompt("Choose between Rock, Paper or Scissors!!!").toLowerCase(),computerPlay()));
+    //     if (playerWins){
+    //         handsWon++;
+    //     }
+    //     else if (computerWins){
+    //         computerHandsWon++;
+    //     }
+    //     //if they're both false it's a draw, neither gets a point 
 
-    }
+    // }
     console.log(`You won ${handsWon} times whereas computer won ${computerHandsWon} times!! `);
     if (handsWon > computerHandsWon) {
         console.log("You win overall!");
@@ -86,3 +86,28 @@ function game(){
 }
 
 game();
+
+// let buttons = document.querySelectorAll(".btn");
+
+// buttons.addEventListener('click',playerSelection());
+
+let rock = document.querySelector('.btn-rock');
+let paper = document.querySelector('.btn-paper');
+let scissors = document.querySelector('.btn-scissors');
+
+// rock.addEventListener("click",() => {
+//     game("rock");
+// });
+
+// paper.addEventListener("click",() => {
+//     game("paper");
+// });
+
+// scissors.addEventListener("click",() => {
+//     game("scissors");
+// });
+
+rock.addEventListener("click",() => console.log("Rock is clicked!!"));
+paper.addEventListener("click",() => console.log("Paper is clicked!!"));
+
+scissors.addEventListener("click",() => console.log("Scissors is clicked!!"));
